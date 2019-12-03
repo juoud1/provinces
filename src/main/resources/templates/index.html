@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no"/>
+<title>PSOLiBill- Provinces</title>
+</head>
+<body>
+	<div th:unless="${#lists.isEmpty(provinces)}">
+    
+  		<h2>Listes des provinces du Canada</h2>
+  
+		  <table border="1">
+		    <thead>
+		      <tr draggable="true">
+		        <th>Province</th>
+		        <th>Code</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr th:each="province : ${provinces}">
+		        <td th:text="${province.provinceName}">Province</td>
+		        <td th:text="${province.provinceCode}">Code</td>
+		      </tr>
+		    </tbody>
+		  </table>
+	</div>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		(function() {
+			console.log("Allo");
+		})();
+		/*]]>*/
+	</script>	
+</body>
+</html>
