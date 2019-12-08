@@ -25,7 +25,7 @@ spring:
    datasource:
        url: jdbc:h2:~/olibilldb/olibilldb;AUTO_SERVER=TRUE #jdbc:h2:~/olibilldb;AUTO_SERVER=TRUE
        platform: h2
-       data: classpath:data/taxes.sql, classpath:data/provinces.sql, classpath:data/taxesprovinces.sql #, classpath:reviews.sql
+       data: classpath:data/provinces.sql #classpath:data/taxes.sql, classpath:data/provinces.sql, classpath:data/taxesprovinces.sql #, classpath:reviews.sql
    jpa:
      database-platform: org.hibernate.dialect.H2Dialect
      hibernate:

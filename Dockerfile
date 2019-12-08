@@ -26,5 +26,9 @@ EXPOSE 8988
 # Define environment variable
 ENV JAVA_OPTS=""
 
+# Adding a 2nd build stage for having a minimal container image that can be deployed in production 
+#FROM scratch
+#COPY /app /app
+
 # Run psolibill.jar when the container launches
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar provinces-psolibill.jar"]
