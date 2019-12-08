@@ -6,7 +6,7 @@ FROM maven:3.6.1-jdk-8-alpine
 VOLUME /tmp
 
 # Set maintainer email id
-MAINTAINER infosolibill@gmail.com
+MAINTAINER devsolibill@gmail.com
 
 # Set the working directory contents into the container at /app
 WORKDIR /app
