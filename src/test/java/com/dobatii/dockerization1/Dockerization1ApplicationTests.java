@@ -6,15 +6,17 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.Period;
-import java.time.Year;
 import java.time.ZoneId;
-import java.time.temporal.TemporalUnit;
-import java.time.temporal.WeekFields;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -63,6 +65,122 @@ public class Dockerization1ApplicationTests {
 		// Working with ZonedDateTime, Period and Duration
 		ZonedTimeDummyUtils.workingWithZonedDateTime();
 		
+		// Working with formatter and parser
+		FormattingParsingDummyUtils.workingWithFormatter();
+		FormattingParsingDummyUtils.workingWithParser();
+		
+		
+	}
+	
+	/**
+	 * Dummy test class for formatting and parsing date/time value
+	 * 
+	 * @author 9386-2142 Qc inc
+	 *
+	 */
+	private static class FormattingParsingDummyUtils {
+		private static ZonedTimeDummyUtils zonedTimeDummyUtils;
+		
+		private static LocalDateTime qzarLocalDateTime;
+		private static ZonedDateTime qzarZonedDateTime;
+		
+		private FormattingParsingDummyUtils() {
+			
+		}
+		
+		private static void workingWithFormatter() {
+			// Qzar datetime
+			createDateTime();
+			
+			// Working with standard formatters
+			String localFormattedIsoDate = DateTimeFormatter.ISO_DATE.format(qzarLocalDateTime);
+			log.info("localFormattedIsoDate : {}".toUpperCase(), localFormattedIsoDate);
+			
+			String localFormattedIsoDatetime = DateTimeFormatter.ISO_DATE_TIME.format(qzarLocalDateTime);
+			log.info("localFormattedIsoDatetime : {}".toUpperCase(), localFormattedIsoDatetime);
+			
+//			String formattedIsoinstant = DateTimeFormatter.ISO_INSTANT.format(qzarLocalDateTime.toInstant(null));
+//			log.info("formattedIsoinstant : {}".toUpperCase(), formattedIsoinstant);
+			
+			String localFormattedIsoLocalDate = DateTimeFormatter.ISO_LOCAL_DATE.format(qzarLocalDateTime);
+			log.info("localFormattedIsoLocalDate : {}".toUpperCase(), localFormattedIsoLocalDate);
+			
+			String localFormattedIsoLocalDatetime = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(qzarLocalDateTime);
+			log.info("localFormattedIsoLocalDatetime : {}".toUpperCase(), localFormattedIsoLocalDatetime);
+			log.info("\n");
+			
+			////
+			String zonedFormattedIsoDate = DateTimeFormatter.ISO_DATE.format(qzarZonedDateTime);
+			log.info("zonedFormattedIsoDate : {}".toUpperCase(), zonedFormattedIsoDate);
+			
+			String zonedFormattedIsoDateTime = DateTimeFormatter.ISO_DATE_TIME.format(qzarZonedDateTime);
+			log.info("zonedFormattedIsoDateTime : {}".toUpperCase(), zonedFormattedIsoDateTime);		
+					
+			String zonedFormattedIsoInstant = DateTimeFormatter.ISO_INSTANT.format(qzarZonedDateTime.toInstant());
+			log.info("zonedFormattedIsoInstant : {}".toUpperCase(), zonedFormattedIsoInstant);
+			
+			String zonedFormattedIsoLocalDate = DateTimeFormatter.ISO_LOCAL_DATE.format(qzarZonedDateTime);
+			log.info("zonedFormattedIsoLocalDate : {}".toUpperCase(), zonedFormattedIsoLocalDate);
+			
+			String zonedFormattedIsoLocalDateTime = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(qzarZonedDateTime);
+			log.info("zonedFormattedIsoLocalDateTime : {}".toUpperCase(), zonedFormattedIsoLocalDateTime);
+			
+			String zonedFormattedIsoOffSetDate = DateTimeFormatter.ISO_OFFSET_DATE.format(qzarZonedDateTime);
+			log.info("zonedFormattedIsoOffSetDate : {}".toUpperCase(), zonedFormattedIsoOffSetDate);
+			
+			String zonedFormattedIsoOffSetDateTime = DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(qzarZonedDateTime);
+			log.info("zonedFormattedIsoOffSetDateTime : {}".toUpperCase(), zonedFormattedIsoOffSetDateTime);
+			
+			String zonedFormattedRfcDateTime = DateTimeFormatter.RFC_1123_DATE_TIME.withLocale(Locale.CANADA_FRENCH).format(qzarZonedDateTime);
+			log.info("zonedFormattedRfcDateTime : {}".toUpperCase(), zonedFormattedRfcDateTime);
+			log.info("\n");
+			
+			// Working with Locale-specific formatters
+			String localFormattedlocalisedDateFull = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+														.withLocale(Locale.CANADA_FRENCH).format(qzarLocalDateTime);
+			log.info("localFormattedlocalisedDateFull : {}".toUpperCase(), localFormattedlocalisedDateFull);
+			
+//			String localFormattedlocalisedDatetimeFull = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL)
+//															.format(qzarLocalDateTime);
+//			log.info("localFormattedlocalisedDatetimeFull : {}".toUpperCase(), localFormattedlocalisedDatetimeFull);
+			
+			String localFormattedlocalisedDateLong = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
+														.withLocale(Locale.CANADA_FRENCH).format(qzarLocalDateTime);
+			log.info("localFormattedlocalisedDateLong : {}".toUpperCase(), localFormattedlocalisedDateLong);
+			
+//			String localFormattedlocalisedDateTimeLong = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)
+//															.format(qzarLocalDateTime);
+//			log.info("localFormattedlocalisedDateTimeLong : {}".toUpperCase(), localFormattedlocalisedDateTimeLong);
+			
+			String localFormattedlocalisedDateMedium = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+																.withLocale(Locale.CANADA_FRENCH).format(qzarLocalDateTime);
+			log.info("localFormattedlocalisedDateMedium : {}".toUpperCase(), localFormattedlocalisedDateMedium);
+			
+			String localFormattedlocalisedDateTimeMedium = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+																.withLocale(Locale.CANADA_FRENCH).format(qzarLocalDateTime);
+			log.info("localFormattedlocalisedDateTimeMedium : {}".toUpperCase(), localFormattedlocalisedDateTimeMedium);
+			
+			// Working with custom patterns
+			
+		}
+		
+		private static void workingWithParser() {
+			// Qzar datetime
+			createDateTime();
+		}
+		
+		private static void createDateTime() {
+			if (null == qzarLocalDateTime) {
+				qzarLocalDateTime =  LocalDateTime.of(LocalDate.of(2009, Month.JANUARY, 27), LocalTime.of(3, 45));
+				log.info("qzarLocalDateTime : {}".toUpperCase(), qzarLocalDateTime);
+			}
+			
+			if (null != qzarLocalDateTime && null == qzarZonedDateTime) {
+				qzarZonedDateTime = qzarLocalDateTime.atZone(ZoneId.of(zonedTimeDummyUtils.ZONEID_CLIENT));
+				log.info("qzarZonedDateTime : {}".toUpperCase(), qzarZonedDateTime);
+			}
+			log.info("\n");
+		}
 	}
 	
 	/**
@@ -72,9 +190,51 @@ public class Dockerization1ApplicationTests {
 	 *
 	 */
 	private static class ZonedTimeDummyUtils{
+		private static final String PREFIX_AFRICA_ZONEID = "Africa";
+		
+		private static final String ZONEID_CLIENT = "Africa/Bangui";
+		private static final String ZONEID_UTC = "UTC";
+		
 		private static void workingWithZonedDateTime() {
-			// List all available time zones
+			// List all available time zones ID
+			log.info("All available time zones :".toUpperCase());
 			ZoneId.getAvailableZoneIds().forEach(z -> System.out.println(z));
+			log.info("\n");
+			
+			// Sorted list of available time zones ID in Africa 
+			log.info("Africa available time zones :".toUpperCase());
+			ZoneId.getAvailableZoneIds().stream()
+			.filter(z -> z.startsWith(PREFIX_AFRICA_ZONEID))
+			.sorted((a, b) -> a.compareTo(b))
+			.forEach(a -> System.out.println(a));
+			log.info("\n");
+			
+			// Working with ZonedDateTime and ZoneId
+			/// Using ZoneId to turn LocalDatetime to ZonedDateTime
+			LocalTime localNoon = LocalTime.NOON;
+			LocalDate localDate = LocalDate.now();
+			LocalDateTime localDateTime = LocalDateTime.of(localDate, localNoon);
+			log.info("localDateTime of the date {} at {} is {}".toUpperCase(), localDate, localNoon, localDateTime);
+			
+			ZonedDateTime banguiDateTime = localDateTime.atZone(ZoneId.of(ZONEID_CLIENT));
+			log.info("Bangui datetime equivalent of the local datetime {} is {}".toUpperCase(), localDateTime, banguiDateTime);
+			log.info("Instant in bangui zonedDateTime is {}".toUpperCase(), banguiDateTime.toInstant());
+			
+			ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.of(ZONEID_UTC));
+			log.info("UTC datetime equivalent of the local datetime {} is {}".toUpperCase(), localDateTime, utcDateTime);
+			log.info("Instant in UTC zonedDateTime is {}".toUpperCase(), utcDateTime.toInstant());
+			log.info("\n");
+			
+			// Look at an ambiguous 
+			ZonedDateTime bgDateTime = ZonedDateTime.of(LocalDate.of(2009,Month.JANUARY, 27),
+					LocalTime.of(4, 30),
+					ZoneId.of(ZONEID_CLIENT));
+			log.info("bgDateTime {} and the Instant is {}".toUpperCase(), bgDateTime, bgDateTime.toInstant());
+			ZonedDateTime bgDateTimePlus1 = bgDateTime.plusHours(1);
+			log.info("bgDateTimePlus1 {} and the Instant is {}".toUpperCase(), bgDateTimePlus1, bgDateTimePlus1.toInstant());
+			log.info("\n");
+			
+			
 		}
 	}
 	
