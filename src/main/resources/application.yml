@@ -63,7 +63,13 @@ info:
     version: 1.0 
 
 logging:
+  file: /olibilllogs/province.log
+  #path: /olibilllogs
   level:
+    root: INFO
+    org:
+      springframework:
+        web: DEBUG
     io:
       netty: DEBUG
     reactor: DEBUG
