@@ -33,20 +33,6 @@ public class ProvinceController {
 	}
 	
 	@GetMapping(value="/provinces")
-	public Mono<String> getProvinces(Model model){
-		
-		model.addAttribute("provinces", provinceService.getProvinces()
-				.collectList()
-				.block());
-		
-		log.info(provinceService.getProvinces()
-				.collectList()
-				.block().toString());
-		
-		return Mono.just("index");
-	}
-	
-	@GetMapping(value="/provinces2")
 	public Optional<List<Province>> getProvinces(){
 		
 		log.info(provinceService.getProvinces()
