@@ -1,5 +1,8 @@
 server:
   port: 8888
+  #ssl:
+  #  key-store: classpath:olibillKeystore.keystore
+  #  key-alias: olibillKeystore
   servlet:
     application-display-name: PSOLIBILL- PROVINCE
     context-path: /prov
