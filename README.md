@@ -4,9 +4,14 @@ Dummy Spring boot, WebFlux, Spring data jpa, java 8, Mockito, project reactor te
 # How to use
 Clone the application, import it in your IDE. You can use maven command 'mvn clean package' to compile this application.
 Run the application and go to your favorite browser or postman tool to check http://localhost:8888/provinces, this displays :
-{"provinceName":"British Colombia","provinceCode":"BC"}
-{"provinceName":"Quebec","provinceCode":"QC"}
-{"provinceName":"Ontario","provinceCode":"ON"}
+{"id":"AB","provinceName":"Alberta","provinceCode":"AB","new":false}
+{"id":"BC","provinceName":"Colombie-Britanique","provinceCode":"BC","new":false}
+{"id":"PE","provinceName":"Île-de-Prince-Édouard","provinceCode":"PE","new":false}
+{"id":"MB","provinceName":"Manitoba","provinceCode":"MB","new":false}
+{"id":"NB","provinceName":"Nouveau Brunswick","provinceCode":"NB","new":false}
+{"id":"NS","provinceName":"Nouvelle Écosse","provinceCode":"NS","new":false}
+{"id":"ON","provinceName":"Ontario","provinceCode":"ON","new":false}
+...
 
 # Unit test
 Two basics unit test classes for reactive controller and service are included.
