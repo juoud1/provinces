@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import com.dobatii.dockerization1.data.Province;
+import com.dobatii.dockerization1.data.model.Province;
 import com.dobatii.dockerization1.service.ProvinceService;
 
 import reactor.core.publisher.Flux;

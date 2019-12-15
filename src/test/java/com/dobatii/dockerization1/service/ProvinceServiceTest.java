@@ -6,7 +6,7 @@ package com.dobatii.dockerization1.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.dobatii.dockerization1.data.Province;
+import com.dobatii.dockerization1.data.model.Province;
 
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;

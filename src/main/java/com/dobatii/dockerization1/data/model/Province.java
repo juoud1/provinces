@@ -1,4 +1,4 @@
-package com.dobatii.dockerization1.data;
+package com.dobatii.dockerization1.data.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

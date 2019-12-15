@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
-import com.dobatii.dockerization1.data.Province;
+import com.dobatii.dockerization1.data.model.Province;
 
 import reactor.core.publisher.Flux;
 
