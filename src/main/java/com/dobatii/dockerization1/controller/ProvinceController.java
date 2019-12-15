@@ -1,10 +1,6 @@
 package com.dobatii.dockerization1.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +9,6 @@ import com.dobatii.dockerization1.service.ProvinceService;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 /**
  * Composant d'intérection avec tout client de service-province
@@ -37,9 +32,19 @@ public class ProvinceController {
 	@GetMapping(value="/provinces", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
 	public Flux<Province> getProvinces(){
 		
+		log.info(provinceService.getAllProvinces()
+				.collectList().toString());
+		
+		return provinceService.getAllProvinces();
+	}
+	
+	@GetMapping(value="/provincesHardcoded", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+	public Flux<Province> getHardcodedProvinces(){
+		
 		log.info(provinceService.getProvinces()
 				.collectList().toString());
 		
 		return provinceService.getProvinces();
 	}
+	
 }

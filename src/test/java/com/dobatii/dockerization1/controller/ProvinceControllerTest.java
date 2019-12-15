@@ -5,7 +5,8 @@ package com.dobatii.dockerization1.controller;
 
 import static org.mockito.Mockito.when;
 
-import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +20,8 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 /**
+ * Unit testing provinceController class using Mockito and reactor-test
+ * 
  * @author 9386-2142 Qc inc
  * @version 1.0
  * 2019-12-13
@@ -30,6 +33,7 @@ public class ProvinceControllerTest {
 	private ProvinceService provinceSevice;
 	
 	private Province ontario, quebec;
+	private List<Province> provinces;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -48,19 +52,31 @@ public class ProvinceControllerTest {
 		.provinceName("QUEBEC")
 		.build();
 		
+		provinces = Arrays.asList(ontario, quebec);
+		
 		//Using a mock service to initiate the controller
 		provinceSevice = Mockito.mock(ProvinceService.class);
 		provinceControler = new ProvinceController(provinceSevice);
 	}
-
+	
 	@Test
-	void testGetProvinces() throws URISyntaxException {
-				
-		Flux<Province> reactiveProvinces = Flux.fromStream(Stream.of(ontario, quebec));
+	void testGetProvinces() {
 		
-		when(provinceSevice.getProvinces()).thenReturn(reactiveProvinces);
+		Flux<Province> reactiveProvinces = Flux.fromStream(provinces.stream());
+		when(provinceSevice.getAllProvinces()).thenReturn(reactiveProvinces);
 		
 		StepVerifier.create(provinceControler.getProvinces())
+			.expectNext(ontario, quebec)
+			.verifyComplete();
+	}
+	
+	@Test
+	void testHardcodedProvinces() {
+				
+		Flux<Province> reactiveProvinces = Flux.fromStream(Stream.of(ontario, quebec));
+		when(provinceSevice.getProvinces()).thenReturn(reactiveProvinces);
+		
+		StepVerifier.create(provinceControler.getHardcodedProvinces())
 		.expectNext(ontario, quebec)
 		.verifyComplete();
 	}
