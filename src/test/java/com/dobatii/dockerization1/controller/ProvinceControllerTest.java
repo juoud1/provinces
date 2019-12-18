@@ -77,7 +77,7 @@ public class ProvinceControllerTest {
 		when(provinceSevice.getProvinces()).thenReturn(reactiveProvinces);
 		
 		StepVerifier.create(provinceControler.getHardcodedProvinces())
-		.expectNext(ontario, quebec)
+		.expectNext(ontario, quebec) 
 		.verifyComplete();
 	}
 

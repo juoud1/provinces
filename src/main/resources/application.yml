@@ -7,12 +7,27 @@ server:
     application-display-name: PSOLIBILL- PROVINCE
     context-path: /prov
 
+## Province service properties
+province:
+  corePoolSize: 4
+  queueCapacity: 78
+  maxPoolSize: 12
+  threadNamePrefix: province-exec-
+  
+## Spring properties
 spring:
    main:
      allow-bean-definition-overriding: true
    messages:
      fallback-to-system-locale: true
      encoding: ISO-8859-1
+   task:
+    execution:
+      pool:
+        core-size: 4
+        max-size: 12
+        queue-capacity: 78
+      thread-name-prefix: province-exec-
    servlet:
     multipart:
       enabled: true # Whether to enable support of multipart uploads.
