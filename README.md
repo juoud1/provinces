@@ -3,7 +3,7 @@ Dummy Spring boot, WebFlux, Spring data jpa, java 8, Mockito, project reactor te
 
 # How to use
 Clone the application, import it in your IDE. You can use maven command 'mvn clean package' to compile this application.
-Run the application and go to your favorite browser or postman tool to check http://localhost:8888/provinces, this displays :
+Run the application using the command 'mvn spring-boot:run' and go to your favorite browser or postman tool to check http://localhost:8888/provinces, this displays :
 {"id":"AB","provinceName":"Alberta","provinceCode":"AB","new":false}
 {"id":"BC","provinceName":"Colombie-Britanique","provinceCode":"BC","new":false}
 {"id":"PE","provinceName":"Île-de-Prince-Édouard","provinceCode":"PE","new":false}
