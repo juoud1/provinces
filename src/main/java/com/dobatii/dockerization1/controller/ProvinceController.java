@@ -29,7 +29,7 @@ public class ProvinceController {
 		this.provinceService = provinceService;
 	}
 	
-	@GetMapping(value="/provinces", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+	@GetMapping(value="/provinces", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Flux<Province> getProvinces(){
 		
 		log.info(provinceService.getAllProvinces()
@@ -38,7 +38,7 @@ public class ProvinceController {
 		return provinceService.getAllProvinces();
 	}
 	
-	@GetMapping(value="/provincesHardcoded", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+	@GetMapping(value="/provincesHardcoded", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Flux<Province> getHardcodedProvinces(){
 		
 		log.info(provinceService.getProvinces()
