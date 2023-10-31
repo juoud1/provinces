@@ -8,6 +8,8 @@ server:
     context-path: /prov
 
 spring:
+   application:
+     name: Province et térritoires du Canada
    main:
      allow-bean-definition-overriding: true
    messages:
@@ -21,19 +23,37 @@ spring:
       max-file-size: 5MB # Max file size.
       max-request-size: 16MB # Max request size.
       resolve-lazily: false # Whether to resolve the multipart request lazily at the time of file or parameter access.
+   r2dbc:
+    #url: r2dbc:h2:file://././olibilldb/olibillprovincedb?options=DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE  #?options=AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE #?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE #r2dbc:h2:file///olibilldb/olibillprovincedb
+    #driver: io.r2dbc:r2dbc-h2
+    name:
+    password:
+    #properties:
+      #schema: classpath:schema.sql
+    pool:
+      enabled: true
+      max-size: 200
+      max-idle-time: -1
    h2:
      console:
         enabled: true
         path : /h2-console
-   datasource:
-       url: jdbc:h2:~/olibilldb/olibillprovincedb;AUTO_SERVER=TRUE #; DATABASE_TO_UPPER=false #jdbc:h2:~/olibilldb;AUTO_SERVER=TRUE
-       platform: h2
-       data: classpath:data/provinces.sql #classpath:data/taxes.sql, classpath:data/provinces.sql, classpath:data/taxesprovinces.sql #, classpath:reviews.sql
-   jpa:
-     database-platform: org.hibernate.dialect.H2Dialect
-     hibernate:
-         ddl-auto: create-drop #update
-
+    #datasource:
+     #sql:
+       #init:
+         #data-locations:
+         #- classpath:data/provinces.sql
+    #init:
+       #platform: h2
+     #url: jdbc:h2:~/olibilldb/olibillprovincedb;AUTO_SERVER=TRUE #; DATABASE_TO_UPPER=false #jdbc:h2:~/olibilldb;AUTO_SERVER=TRUE
+  
+    
+    #platform: h2
+    #data: classpath:data/provinces.sql #classpath:data/taxes.sql, classpath:data/provinces.sql, classpath:data/taxesprovinces.sql #, classpath:reviews.sql
+    #jpa:
+      #database-platform: org.hibernate.dialect.H2Dialect
+      #hibernate:
+        #  ddl-auto: create-drop #update
 # SOLIBILL's application details
 management:
   #port: 8183
@@ -41,9 +61,10 @@ management:
   #context-path: /solibillinfo
   server:
     address: localhost
+    base-path: /solibill-provinfo
     port: 8184 
-    servlet:
-      context-path: /solibill-provinfo
+    #cservlet:
+      #ccontext-path: /solibill-provinfo
   endpoint:
     info:
       enabled: true
@@ -66,7 +87,8 @@ info:
     version: 1.0 
 
 logging:
-  file: /olibilllogs/province.log
+  file:
+    name: /olibilllogs/province.log
   #path: /olibilllogs
   level:
     root: INFO
