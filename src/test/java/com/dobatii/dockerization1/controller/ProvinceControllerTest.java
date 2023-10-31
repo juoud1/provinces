@@ -60,7 +60,7 @@ public class ProvinceControllerTest {
 	void testGetProvinces() {
 
 		Flux<Province> reactiveProvinces = Flux.fromStream(provinces.stream());
-		when(provinceSevice.getAllProvinces()).thenReturn(reactiveProvinces);
+		when(provinceSevice.getProvinces()).thenReturn(reactiveProvinces);
 
 		// StepVerifier.create(provinceControler.getProvinces()).expectNext(ontario,
 		// quebec).verifyComplete();
