@@ -27,8 +27,9 @@ public class ProvinceService {
 	private final ProvinceRepository provinceRepository;
 
 	public ProvinceService(ProvinceRepository provinceRepository) {
+		log.info("initializing province service in progress ...".toUpperCase());
 		this.provinceRepository = provinceRepository;
-		log.info("initiate province repository".toUpperCase());
+		log.info("province service initialized with success!".toUpperCase());
 	}
 
 	/**
@@ -38,25 +39,36 @@ public class ProvinceService {
 	 * @return Flux of all existing provinces or territories
 	 * 
 	 */
-	public Flux<Province> getAllProvinces() {
-		log.info("provinces and/or territories of Canada processed!".toUpperCase());
-		return provinceRepository.findAll();
+	public Flux<Province> getProvinces() {
+		log.info("getting all provinces and/or territories of Canada in progress ...!".toUpperCase());
+		return provinceRepository.findAll()
+				.log("all provinces and/or territories of Canada fetched with success!".toUpperCase());
 	}
 
 	public Mono<Province> getProvince(String province) {
-		log.info("province and/or territory of Canada processed!".toUpperCase());
+		log.info("getting province and/or territory of Canada in progress ...".toUpperCase());
 		return StringUtils.isNotBlank(province) && 2 == province.length()
 				? provinceRepository.findByProvinceCode(province)
-				: provinceRepository.findByProvinceName(province);
+						.log("province and/or territorie of Canada fetched with success!".toUpperCase())
+				: provinceRepository.findByProvinceName(province)
+						.log("province and/or territorie of Canada fetched with success!".toUpperCase());
 	}
 
 	public Mono<Province> persistProvince(Mono<Province> newProvince) {
+		log.info("creating province and/or territory of Canada in progress ...".toUpperCase());
 		return newProvince.flatMap(prov -> {
 			Province province = Province.builder().provinceName(prov.getProvinceName())
-					.provinceCode(prov.getProvinceCode()).build();
+					.provinceCode(prov.getProvinceCode().toUpperCase()).build();
 			log.info("new province and/or territory of Canada processed!".toUpperCase());
-			return provinceRepository.save(province);
+			return provinceRepository.save(province)
+					.log("new province and/or territory of Canada created with success!".toUpperCase());
 		});
+	}
+
+	public Mono<Void> deleteProvinceByCode(String provinceCodeToDelete) {
+		log.info("delete province and/or territory of Canada in progress ...".toUpperCase());
+		return provinceRepository.deleteByProvinceCode(provinceCodeToDelete)
+				.log("province and/or territory of Canada deleted with success!".toUpperCase()).then();
 	}
 
 }

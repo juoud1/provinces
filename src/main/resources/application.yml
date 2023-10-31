@@ -32,8 +32,8 @@ spring:
       #schema: classpath:schema.sql
     pool:
       enabled: true
-      max-size: 200
-      max-idle-time: -1
+      max-size: 30
+      #max-idle-time: -1
    h2:
      console:
         enabled: true
