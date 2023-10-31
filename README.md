@@ -1,5 +1,5 @@
 # Provinces
-Dummy Spring boot, WebFlux, Spring data jpa, java 8, Mockito, project reactor test, docker and kubernetes project
+Dummy Spring boot, WebFlux, Spring data jpa, java 11, Mockito, project reactor test, docker and kubernetes project
 
 # How to use
 Clone the application, import it in your IDE. You can use maven command 'mvn clean package' to compile this application.
