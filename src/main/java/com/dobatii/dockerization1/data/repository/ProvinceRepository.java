@@ -9,7 +9,6 @@ import reactor.core.publisher.Mono;
 
 @Transactional
 public interface ProvinceRepository extends ReactiveCrudRepository<Province, Long> {
-
 	Mono<Province> findByProvinceCode(String provinceCode);
 
 	Mono<Province> findByProvinceName(String provinceName);

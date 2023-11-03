@@ -33,7 +33,7 @@ import reactor.core.publisher.Mono;
  * 
  */
 
-@RestController
+@RestController()
 @Slf4j
 public class ProvinceController {
 
@@ -46,6 +46,7 @@ public class ProvinceController {
 		log.info("provinces and/or territories of Canada, web pesentation component is ready!");
 	}
 
+	// @PreAuthorize("hasRole('ADMIN')")
 	@PostMapping(path = PROVINCES_PATH)
 	public Mono<ResponseEntity<ProvinceModel>> addProvince(@RequestBody Mono<Province> newProvince,
 			ServerWebExchange exchange) {

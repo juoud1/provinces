@@ -7,14 +7,12 @@ import org.springframework.context.annotation.Configuration;
  * Configuring spring data jpa for the province service
  * 
  * @author 9386-2142 Qc inc
- * @version 1.0
- * 2019-12-15
+ * @version 1.0 2019-12-15
  * 
  */
 
 @Configuration
-@EntityScan({"com.dobatii.dockerization1.data.model",
-	"com.dobatii.dockerization1.data.repositoryjpa"})
+@EntityScan({ "com.dobatii.dockerization1.data.entity", "com.dobatii.dockerization1.data.repository" })
 public class DataJpaConfig {
 
 }

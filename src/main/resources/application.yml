@@ -24,20 +24,28 @@ spring:
       max-request-size: 16MB # Max request size.
       resolve-lazily: false # Whether to resolve the multipart request lazily at the time of file or parameter access.
    r2dbc:
-    #url: r2dbc:h2:file://././olibilldb/olibillprovincedb?options=DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE  #?options=AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE #?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE #r2dbc:h2:file///olibilldb/olibillprovincedb
-    #driver: io.r2dbc:r2dbc-h2
-    name:
+    username:
     password:
+    url: r2dbc:h2:file://././olibilldb/olibillprovincedb #?options=DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE #?options=DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE  #?options=AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE #?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE #r2dbc:h2:file///olibilldb/olibillprovincedb
+    #driver: io.r2dbc:r2dbc-h2
     #properties:
       #schema: classpath:schema.sql
-    pool:
-      enabled: true
-      max-size: 30
-      #max-idle-time: -1
+    #dpool:
+     #d enabled: true
+     #d max-size: 30
+     #max-idle-time: -1
+   flyway:
+    url: jdbc:h2:file:./olibilldb/olibillprovincedb #?options=DB_CLOSE_DELAY=-1;IGNORECASE=TRUE;DATABASE_TO_UPPER=FALSE;DB_CLOSE_ON_EXIT=FALSE
+    locations: classpath:db/migration #filesystem:data/migration si ça se trouve sur le pc
+    #schemas: provorterr #province or territory 
+    user:
+    password:
    h2:
      console:
         enabled: true
-        path : /h2-console
+        settings:
+          web-allow-others: false
+        #path : /h2-console
     #datasource:
      #sql:
        #init:

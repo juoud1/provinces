@@ -1,5 +1,5 @@
 # Provinces
-Dummy Spring boot based maven, WebFlux, Reactive RESTfull API (contrat last), Hateoas, Spring data r2dbc, java 11, Mockito, project reactor test, jacoco, H2 docker and kubernetes project
+Dummy Spring boot based maven, WebFlux, Reactive RESTfull API (contrat last), Hateoas, Spring data r2dbc, java 11, Spring Webflux Security, Mockito, project reactor test, jacoco, H2 docker and kubernetes project
 
 # How to do
 Clone the application and import it in your IDE. 
@@ -9,8 +9,16 @@ For rapid testing, open your prefered Command Line Interface (CLI) and run :
 
 - mvn spring-boot:run' to run the app 
 
-- curl http://localhost:8888/provinces | jq
-  and you get this result :
+- Use username and password below :
+	username = dongongo
+	password = dongongo
+	
+- Go to your prefered browser and type http://localhost:8888/provinces
+  or use your Commande Line Interface and use this command 
+  curl http://localhost:8888/provinces | jq
+  
+  So you can get this result after authentification :
+  
  [
   {
     "provinceName": "Alberta",
