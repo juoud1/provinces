@@ -3,8 +3,6 @@ package com.dobatii.dockerization1.data.entity;
 //import javax.persistence.Entity;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.annotation.Id;
-//import org.springframework.data.jpa.domain.AbstractPersistable;
-//import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.AllArgsConstructor;
