@@ -170,14 +170,51 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <configuration>
+                            <classifier>task</classifier>                     
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+<!--						<manifest>-->
+<!--							<addClasspath>true</addClasspath>-->
+<!--							<mainClass>com.wellgrounded.Main</mainClass>-->
+<!--							<Automatic-Module-Name>-->
+<!--								com.dobatii.dockerization1-->
+<!--							</Automatic-Module-Name>-->
+<!--						</manifest>-->
+						<manifestEntries>
+							<addClasspath>true</addClasspath>
+							<Automatic-Module-Name>
+								com.dobatii.dockerization1
+							</Automatic-Module-Name>
+						</manifestEntries>
+					</archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <configuration>
+                            <classifier>task</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+      
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.4</version>
+				<version>0.8.5</version>
 				<executions>
 					<execution>
 						<goals>
