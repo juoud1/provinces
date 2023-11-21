@@ -11,8 +11,9 @@ insert into province (province_code, province_name) values ('NL', 'Terre Neuve e
 insert into province (province_code, province_name) values ('NU', 'Nunavut');
 insert into province (province_code, province_name) values ('NT', 'Térritoires du Nord-Oeust');
 insert into province (province_code, province_name) values ('YT', 'Yukon');
-insert into member (member_first_name, member_last_name, member_email, member_phone_number, member_username, member_password, member_role, member_status) values ('Dongongo', 'Dongongo', 'juoud1@gmail.com', '', 'dongongo', '$2a$12$VZeSGJqrK6wTLGNXbuGZ8eTzT5PhQATvRcPh7GxUHgP6q0is5KOka', 'USER', 'actif');
-/*insert into province (ID, PROVINCE_CODE, PROVINCE_NAME)
+insert into member (member_first_name, member_last_name, member_email, member_phone_number, member_username, member_password, member_role, member_status) values ('Dongongo', 'Dongongo', 'juoud1@gmail.com', '', 'dongongo', '$2a$10$5yuDTEYH/UqS4z83jJzBa.R7aD95eGB43BMjiGz2vT8z39HzbRl1G', 'USER', 'actif');
+/* '$2a$12$VZeSGJqrK6wTLGNXbuGZ8eTzT5PhQATvRcPh7GxUHgP6q0is5KOka',
+insert into province (ID, PROVINCE_CODE, PROVINCE_NAME)
 values ('AB', 'AB', 'Alberta');
 insert into province (ID, PROVINCE_CODE, PROVINCE_NAME)
 values ('BC', 'BC', 'Colombie-Britanique');

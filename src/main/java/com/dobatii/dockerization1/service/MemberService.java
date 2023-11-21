@@ -45,6 +45,8 @@ public class MemberService implements ReactiveUserDetailsService {
 		if (!Objects.isNull(member)) {
 			return member.map(m -> {
 				log.info("Fetching Current user in progress ...".toUpperCase());
+				log.info("m.getMemberPassword : {}", m.getMemberPassword());
+
 				return User.withUsername(username).password(m.getMemberPassword()).roles(m.getMemberRole()).build();
 			}).log("Current user fetched with success!".toUpperCase());
 		} else {

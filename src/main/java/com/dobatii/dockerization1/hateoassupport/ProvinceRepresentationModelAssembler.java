@@ -39,10 +39,10 @@ public class ProvinceRepresentationModelAssembler
 		BeanUtils.copyProperties(entity, provinceResource);
 		var serverUri = getServerUri(exchange);
 
-		provinceResource.add(Link.of(String.format("%s/provinces", serverUri)).withRel("provinces"));
+		provinceResource.add(Link.of(String.format("%s/olibillapi/v1/provinces", serverUri)).withRel("provinces"));
 
-		provinceResource
-				.add(Link.of(String.format("%s/provinces/%s", serverUri, entity.getProvinceCode())).withSelfRel());
+		provinceResource.add(Link
+				.of(String.format("%s/olibillapi/v1/provinces/%s", serverUri, entity.getProvinceCode())).withSelfRel());
 
 		return provinceResource;
 	}
