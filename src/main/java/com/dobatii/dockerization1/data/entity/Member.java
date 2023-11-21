@@ -12,6 +12,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * 
+ * Member's data information
+ * 
+ * @author juoud1
+ * @version 1.0
+ * @date 05-11-2023
+ * 
+ */
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter

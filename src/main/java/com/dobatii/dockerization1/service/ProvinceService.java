@@ -48,7 +48,7 @@ public class ProvinceService {
 	public Mono<Province> getProvince(String province) {
 		log.info("getting province and/or territory of Canada in progress ...".toUpperCase());
 		return StringUtils.isNotBlank(province) && 2 == province.length()
-				? provinceRepository.findByProvinceCode(province)
+				? provinceRepository.findByProvinceCode(province.toUpperCase())
 						.log("province and/or territorie of Canada fetched with success!".toUpperCase())
 				: provinceRepository.findByProvinceName(province)
 						.log("province and/or territorie of Canada fetched with success!".toUpperCase());
@@ -67,7 +67,7 @@ public class ProvinceService {
 
 	public Mono<Void> deleteProvinceByCode(String provinceCodeToDelete) {
 		log.info("delete province and/or territory of Canada in progress ...".toUpperCase());
-		return provinceRepository.deleteByProvinceCode(provinceCodeToDelete)
+		return provinceRepository.deleteByProvinceCode(provinceCodeToDelete.toUpperCase())
 				.log("province and/or territory of Canada deleted with success!".toUpperCase()).then();
 	}
 
