@@ -1,5 +1,9 @@
 package com.dobatii.dockerization1.data.entity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 //import javax.persistence.Entity;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.annotation.Id;
@@ -31,7 +35,13 @@ import lombok.ToString;
 public class Province {
 	@Id
 	private Long id;
+
+	@NotNull(message = "required.provincename.not.null")
+	@Size(min = 3, max = 50, message = "equired.provincename.size")
 	private String provinceName;
+
+	@NotBlank(message = "required.provincecode.not.blank")
+	@Size(min = 2, max = 3, message = "equired.provincecode.size")
 	private String provinceCode;
 
 	@Override

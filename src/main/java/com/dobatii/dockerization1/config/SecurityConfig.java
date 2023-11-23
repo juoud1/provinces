@@ -49,10 +49,12 @@ import reactor.core.publisher.Mono;
 public class SecurityConfig {
 
 	private final MemberService reactiveUserDetailsService;
+	// private final AuthenticEntryPoint authenticationEntryPoint;
 
 	public SecurityConfig(MemberService reactiveUserDetailsService) {
 		log.info("Initializing province security configuration in progress ...".toUpperCase());
 		this.reactiveUserDetailsService = reactiveUserDetailsService;
+		// this.authenticationEntryPoint = authenticationEntryPoint;
 		log.info("province security configuration done!".toUpperCase());
 	}
 
@@ -94,6 +96,10 @@ public class SecurityConfig {
 
 				// .addFilterBefore(new JwtTokenAuthenticationFilter(jwtService),
 				// SecurityWebFiltersOrder.AUTHENTICATION)
+				/*
+				 * .exceptionHandling()
+				 * .authenticationEntryPoint(authenticationEntryPoint).and()
+				 */
 				.addFilterAt(new JwtTokenAuthenticationFilter(jwtService), SecurityWebFiltersOrder.HTTP_BASIC)//
 				.build();
 

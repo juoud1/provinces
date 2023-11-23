@@ -33,7 +33,7 @@ public class JwtTokenAuthenticationFilter implements WebFilter {
 	public JwtTokenAuthenticationFilter(JwtService jwtService) {
 		log.info("initializing authentication filter in progress ...".toUpperCase());
 		this.jwtService = jwtService;
-		log.info("authentication filter in progress initialized with success ...".toUpperCase());
+		log.info("authentication filter initialized with success ...".toUpperCase());
 	}
 
 	@Override
