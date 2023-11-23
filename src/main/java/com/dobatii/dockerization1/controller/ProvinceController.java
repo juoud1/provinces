@@ -6,6 +6,8 @@ import static org.springframework.http.ResponseEntity.notFound;
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,7 +53,7 @@ public class ProvinceController {
 
 	// @PreAuthorize("hasRole('ADMIN')")
 	@PostMapping // (path = PROVINCES_PATH)
-	public Mono<ResponseEntity<ProvinceModel>> addProvince(@RequestBody Mono<Province> newProvince,
+	public Mono<ResponseEntity<ProvinceModel>> addProvince(@Valid @RequestBody Mono<Province> newProvince,
 			ServerWebExchange exchange) {
 		log.info("request for creating new province and/or territory of Canada!".toUpperCase());
 		return provinceService.persistProvince(newProvince).map(p -> provinceAssembler.entityToModel(p, exchange))
