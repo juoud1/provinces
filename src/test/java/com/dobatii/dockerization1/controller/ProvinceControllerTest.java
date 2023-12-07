@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 
 import com.dobatii.dockerization1.data.entity.Province;
 import com.dobatii.dockerization1.hateoassupport.ProvinceRepresentationModelAssembler;
+import com.dobatii.dockerization1.service.JwtService;
 import com.dobatii.dockerization1.service.ProvinceService;
 
 import reactor.core.publisher.Flux;
@@ -23,7 +24,8 @@ import reactor.core.publisher.Flux;
  * Unit testing provinceController class using Mockito and reactor-test
  * 
  * @author 9386-2142 Qc inc
- * @version 1.0 2019-12-13
+ * @version 1.2
+ * @date 2019-05-09, 2023-12-06
  */
 
 public class ProvinceControllerTest {
@@ -31,6 +33,7 @@ public class ProvinceControllerTest {
 	private ProvinceController provinceControler;
 	private ProvinceService provinceSevice;
 	private ProvinceRepresentationModelAssembler provinceAssembler;
+	private JwtService jwtService;
 
 	private Province ontario, quebec;
 	private List<Province> provinces;
@@ -51,7 +54,8 @@ public class ProvinceControllerTest {
 		// Using a mock service to initiate the controller
 		provinceSevice = Mockito.mock(ProvinceService.class);
 		provinceAssembler = Mockito.mock(ProvinceRepresentationModelAssembler.class);
-		provinceControler = new ProvinceController(provinceSevice, provinceAssembler);
+		jwtService = Mockito.mock(JwtService.class);
+		provinceControler = new ProvinceController(provinceSevice, provinceAssembler, jwtService);
 
 	}
 

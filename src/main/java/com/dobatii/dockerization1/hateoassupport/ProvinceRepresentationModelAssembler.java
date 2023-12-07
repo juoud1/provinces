@@ -17,6 +17,15 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * HATEAO Assembler component for province resource
+ * 
+ * @author juoud1
+ * @version 1.0
+ * @date 13-11-2023
+ * 
+ */
+
 @Component
 @Slf4j
 public class ProvinceRepresentationModelAssembler
