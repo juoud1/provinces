@@ -1,27 +1,32 @@
 package com.dobatii.dockerization1.service;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dobatii.dockerization1.data.entity.Province;
 import com.dobatii.dockerization1.data.repository.ProvinceRepository;
+import com.dobatii.dockerization1.model.ProvinceModel;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
+ * Component for processing province or territory data
  * 
  * @author 9386-2142 Qc inc
- * @version 1.1
- * @date 2019-05-09; 2023-10-30
+ * @version 1.3
+ * @date 2019-05-09; 2023-10-30; 2023-11-30, 2023-12-06
  * 
  */
 
-@Slf4j
 @Service
 @Transactional
+@Slf4j
 public class ProvinceService {
 
 	private final ProvinceRepository provinceRepository;
@@ -54,21 +59,65 @@ public class ProvinceService {
 						.log("province and/or territorie of Canada fetched with success!".toUpperCase());
 	}
 
-	public Mono<Province> persistProvince(Mono<Province> newProvince) {
+	public Mono<Province> persistProvince(Mono<ProvinceModel> newProvince, final String username) {
 		log.info("creating province and/or territory of Canada in progress ...".toUpperCase());
+
+		log.info("username : {}".toUpperCase(), username);
+		if (StringUtils.isBlank(username)) {
+			throw new RuntimeException("unknow user does not delete!".toUpperCase());
+		}
+
 		return newProvince.flatMap(prov -> {
-			Province province = Province.builder().provinceName(prov.getProvinceName())
-					.provinceCode(prov.getProvinceCode().toUpperCase()).build();
-			log.info("new province and/or territory of Canada processed!".toUpperCase());
-			return provinceRepository.save(province)
-					.log("new province and/or territory of Canada created with success!".toUpperCase());
+			ZonedDateTime zdt = ZonedDateTime.now(ZoneId.systemDefault());
+
+			Province provinceToSave = Province.builder() //
+					.provinceCode(prov.getProvinceCode()) //
+					.provinceName(prov.getProvinceName()) //
+					.provinceCreated(zdt) //
+					.provinceCreatedBy(username) //
+					.provinceLastUpdated(zdt) //
+					.provinceLastUpdatedBy(username)//
+					.build();
+
+			return provinceRepository.save(provinceToSave)
+					.log("new province and/or territory of Canada created with success!".toUpperCase())
+					.onErrorMap(e -> new Exception("Could not save province or territory!" + e.getMessage()));
 		});
 	}
 
-	public Mono<Void> deleteProvinceByCode(String provinceCodeToDelete) {
+	public Mono<Void> deleteProvinceByCode(String provinceToDeleteCode, final String username) {
 		log.info("delete province and/or territory of Canada in progress ...".toUpperCase());
-		return provinceRepository.deleteByProvinceCode(provinceCodeToDelete.toUpperCase())
+
+		log.info("username : {}".toUpperCase(), username);
+		if (StringUtils.isBlank(username)) {
+			throw new RuntimeException("unknow user does not delete!".toUpperCase());
+		}
+
+		return provinceRepository.deleteByProvinceCode(provinceToDeleteCode.toUpperCase())
 				.log("province and/or territory of Canada deleted with success!".toUpperCase()).then();
+	}
+
+	public Mono<Province> updateProvinceByCode(String provinceToUpdateCode, ProvinceModel provinceToUpdate,
+			final String username) {
+		log.info("update province and/or territory of Canada in progress ...".toUpperCase());
+
+		log.info("username : {}".toUpperCase(), username);
+		if (StringUtils.isBlank(username)) {
+			throw new RuntimeException("unknow user does not delete!".toUpperCase());
+		}
+
+		return provinceRepository.findByProvinceCode(provinceToUpdate.getProvinceCode())//
+				.flatMap(prov -> {
+					ZonedDateTime zdt = ZonedDateTime.now(ZoneId.systemDefault());
+					prov.setProvinceCode(provinceToUpdate.getProvinceCode());
+					prov.setProvinceName(provinceToUpdate.getProvinceName());
+					prov.setProvinceLastUpdated(zdt);
+					prov.setProvinceLastUpdatedBy(username);
+					return provinceRepository.save(prov)//
+							.log("province and/or territory of Canada updated with success!".toUpperCase())
+							.onErrorMap(e -> new Exception("Could not update province or territory!" + e.getMessage()));
+				});
+
 	}
 
 }

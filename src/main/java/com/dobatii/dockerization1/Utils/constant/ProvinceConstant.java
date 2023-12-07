@@ -44,6 +44,10 @@ public final class ProvinceConstant {
 	public static final String ROLE_CLAIM = "roles";
 	public static final String AUTHORITY_PREFIX = "ROLE_";
 
+	// Divers
+	public static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd";
+	public static final String ZONED_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss.nnn VV";
+
 	private ProvinceConstant() {
 	}
 }

@@ -1,5 +1,7 @@
 package com.dobatii.dockerization1.data.entity;
 
+import java.time.ZonedDateTime;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,7 +22,7 @@ import lombok.ToString;
  * Province data
  * 
  * @author 9386-2142 Qc inc
- * @version 1.1 2023-10-30
+ * @version 1.2 2023-12-04
  *
  * 
  */
@@ -37,12 +39,22 @@ public class Province {
 	private Long id;
 
 	@NotNull(message = "required.provincename.not.null")
-	@Size(min = 3, max = 50, message = "equired.provincename.size")
+	@Size(min = 3, max = 50, message = "required.provincename.size")
 	private String provinceName;
 
 	@NotBlank(message = "required.provincecode.not.blank")
-	@Size(min = 2, max = 3, message = "equired.provincecode.size")
+	@Size(min = 2, max = 3, message = "required.provincecode.size")
 	private String provinceCode;
+
+	private ZonedDateTime provinceCreated;
+
+	@NotBlank(message = "required.provincecreatedby.not.blank")
+	private String provinceCreatedBy;
+
+	private ZonedDateTime provinceLastUpdated;
+
+	@NotBlank(message = "required.provinceupdatedby.not.blank")
+	private String provinceLastUpdatedBy;
 
 	@Override
 	public int hashCode() {

@@ -63,7 +63,6 @@ public class SecurityConfig {
 		log.info("Configuring province reactive authentication manager in progress ...".toUpperCase());
 		var reactiveAuthManager = new UserDetailsRepositoryReactiveAuthenticationManager(reactiveUserDetailsService);
 		reactiveAuthManager.setPasswordEncoder(passwordEncoder());
-		log.info("passwordEncoder().encode(dongongo): {}", passwordEncoder().encode("dongongo"));
 		log.info("province reactive authentication manager configured with success!".toUpperCase());
 		return reactiveAuthManager;
 	}
