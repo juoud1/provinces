@@ -18,7 +18,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<startClass>com.dobatii.dockerization1.Dockerization1Application</startClass>
-		<swagger.version>2.9.2</swagger.version>
+		<swagger.version>2.10.0</swagger.version>
 		<java.version>11</java.version>
 <!-- 		<docker.image.prefix>doj</docker.image.prefix> -->
 	</properties>
